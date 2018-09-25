@@ -4,43 +4,29 @@ package com.alghubari.mystories;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 //import android.support.v4.app.FragmentManager;
+import  com.alghubari.mystories.MasterListFargment;
+// This activity is responsible for displaying the master list of all images
+// Implement the MasterListFragment callback, OnImageClickListener
+import com.alghubari.mystories.R;
+public class MainActivity extends AppCompatActivity implements MasterListFargment.OnImageClickListener{
 
-public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null) {
-
-            BlankFragment headFragment = new BlankFragment();
+    }
 
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .add(R.id.head_container, headFragment)
-                    .commit();
-            headFragment.setImImageId(AndroidImageAssets.getHeads());
-            headFragment.setmListIndex(1);
-            // Create and display the body and leg BodyPartFragments
-
-            BlankFragment bodyFragment = new BlankFragment();
-            bodyFragment.setImImageId(AndroidImageAssets.getBodies());
-            fragmentManager.beginTransaction()
-                    .add(R.id.body_container, bodyFragment)
-                    .commit();
-
-            BlankFragment legFragment = new BlankFragment();
-            legFragment.setImImageId(AndroidImageAssets.getLegs());
-            fragmentManager.beginTransaction()
-                    .add(R.id.leg_container, legFragment)
-                    .commit();
-// Create and display the body and leg BodyPartFragments
 
 
-        }
+
+    @Override
+    public void onImageSelected(int position) {
+        Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
 
     }
 }
